@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import AboutSection from './AboutSection';
 
 const Footer = () => {
   const [footerData, setFooterData] = useState({ bio: '', profile: '' });
@@ -88,7 +89,8 @@ const Footer = () => {
           {/* Admin Biography */}
           <div>
             <h3 className="text-xl font-bold mb-4">About Us</h3>
-            <p className="mb-2">{footerData.bio || 'Admin biography will be displayed here.'}</p>
+            <AboutSection />
+            <p className="mb-2 mt-4">{footerData.bio || 'Admin biography will be displayed here.'}</p>
             <p>{footerData.profile || 'Profile content for user trust.'}</p>
           </div>
 
@@ -124,7 +126,7 @@ const Footer = () => {
                 onChange={(e) => setNewReview({ ...newReview, rating: parseInt(e.target.value) })}
                 className="w-full p-2 mb-2 text-cyan-300"
               >
-                {[1,2,3,4,5].map(r => <option key={r} value={r}>{r} Stars</option>)}
+                {[1, 2, 3, 4, 5].map(r => <option key={r} value={r}>{r} Stars</option>)}
               </select>
               <button type="submit" className="bg-cyan-800 px-4 py-2 rounded hover:bg-cyan-900">Submit Review</button>
             </form>

@@ -61,59 +61,10 @@ const Header = ({ adminToken, onLogout, searchQuery, setSearchQuery, selectedCat
           </button>
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-4">
-          <Link to="/" className="hover:underline">
-            Home
-          </Link>
-          <Link to="/cart" className="hover:underline relative">
-            Cart
-            {getTotalItems() > 0 && (
-              <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full text-xs px-2 py-1">
-                {getTotalItems()}
-              </span>
-            )}
-          </Link>
-          <Link to="/order-history" className="hover:underline">
-            Order History
-          </Link>
-          {adminToken ? (
-            <>
-              <Link to="/admin-dashboard" className="hover:underline">
-                Admin Dashboard
-              </Link>
-              <button
-                onClick={onLogout}
-                className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
-              >
-                Logout
-              </button>
-            </>
-          ) : (
-            <Link to="/admin-login" className="hover:underline">
-              Admin Login
-            </Link>
-          )}
-        </nav>
-        {/* Mobile Navigation Sidebar */}
-        <motion.div
-          className="md:hidden fixed top-0 left-0 h-full w-64 bg-cyan-800 text-cyan-200 z-50"
-          initial={{ x: '-100%' }}
-          animate={{ x: isMenuOpen ? 0 : '-100%' }}
-          transition={{ duration: 0.3 }}
-        >
-          <div className="flex flex-col space-y-4 px-6 py-8">
-            <button
-              onClick={toggleMenu}
-              className="self-end text-cyan-200 focus:outline-none"
-              aria-label="Close menu"
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-            <Link to="/" className="hover:underline text-lg" onClick={toggleMenu}>
+            <Link to="/" className="hover:underline">
               Home
             </Link>
-            <Link to="/cart" className="hover:underline text-lg relative" onClick={toggleMenu}>
+            <Link to="/cart" className="hover:underline relative">
               Cart
               {getTotalItems() > 0 && (
                 <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full text-xs px-2 py-1">
@@ -121,35 +72,84 @@ const Header = ({ adminToken, onLogout, searchQuery, setSearchQuery, selectedCat
                 </span>
               )}
             </Link>
-            <Link to="/order-history" className="hover:underline text-lg" onClick={toggleMenu}>
+            <Link to="/order-history" className="hover:underline">
               Order History
             </Link>
             {adminToken ? (
               <>
-                <Link to="/admin-dashboard" className="hover:underline text-lg" onClick={toggleMenu}>
+                <Link to="/admin-dashboard" className="hover:underline">
                   Admin Dashboard
                 </Link>
                 <button
-                  onClick={() => { onLogout(); toggleMenu(); }}
-                  className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 text-left text-lg"
+                  onClick={onLogout}
+                  className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
                 >
                   Logout
                 </button>
               </>
             ) : (
-              <Link to="/admin-login" className="hover:underline text-lg" onClick={toggleMenu}>
+              <Link to="/admin-login" className="hover:underline">
                 Admin Login
               </Link>
             )}
-          </div>
-        </motion.div>
-        {/* Backdrop */}
-        {isMenuOpen && (
-          <div
-            className="md:hidden fixed inset-0 bg-black bg-opacity-50 z-40"
-            onClick={toggleMenu}
-          ></div>
-        )}
+          </nav>
+          {/* Mobile Navigation Sidebar */}
+          <motion.div
+            className="md:hidden fixed top-0 left-0 h-full w-64 bg-cyan-800 text-cyan-200 z-50"
+            initial={{ x: '-100%' }}
+            animate={{ x: isMenuOpen ? 0 : '-100%' }}
+            transition={{ duration: 0.3 }}
+          >
+            <div className="flex flex-col space-y-4 px-6 py-8">
+              <button
+                onClick={toggleMenu}
+                className="self-end text-cyan-200 focus:outline-none"
+                aria-label="Close menu"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+              <Link to="/" className="hover:underline text-lg" onClick={toggleMenu}>
+                Home
+              </Link>
+              <Link to="/cart" className="hover:underline text-lg relative" onClick={toggleMenu}>
+                Cart
+                {getTotalItems() > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full text-xs px-2 py-1">
+                    {getTotalItems()}
+                  </span>
+                )}
+              </Link>
+              <Link to="/order-history" className="hover:underline text-lg" onClick={toggleMenu}>
+                Order History
+              </Link>
+              {adminToken ? (
+                <>
+                  <Link to="/admin-dashboard" className="hover:underline text-lg" onClick={toggleMenu}>
+                    Admin Dashboard
+                  </Link>
+                  <button
+                    onClick={() => { onLogout(); toggleMenu(); }}
+                    className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 text-left text-lg"
+                  >
+                    Logout
+                  </button>
+                </>
+              ) : (
+                <Link to="/admin-login" className="hover:underline text-lg" onClick={toggleMenu}>
+                  Admin Login
+                </Link>
+              )}
+            </div>
+          </motion.div>
+          {/* Backdrop */}
+          {isMenuOpen && (
+            <div
+              className="md:hidden fixed inset-0 bg-black bg-opacity-50 z-40"
+              onClick={toggleMenu}
+            ></div>
+          )}
         </div>
       </div>
     </header>

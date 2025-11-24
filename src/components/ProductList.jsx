@@ -5,7 +5,7 @@ import { useCart } from "../context/CartContext";
 const ProductList = ({ products = [], isLoading = false }) => {
   const { addToCart } = useCart();
 
-  // 🟢 Loading state (skeletons)
+  //  Loading state (skeletons)
   if (isLoading) {
     return (
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">
@@ -24,7 +24,7 @@ const ProductList = ({ products = [], isLoading = false }) => {
     );
   }
 
-  // 🟢 Empty state
+  //  Empty state
   if (!products.length) {
     return (
       <div className="flex flex-col justify-center items-center py-16 text-center">
@@ -36,7 +36,7 @@ const ProductList = ({ products = [], isLoading = false }) => {
     );
   }
 
-  // 🟢 Product Grid
+  //  Product Grid
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6">
       {products.map((product) => (
